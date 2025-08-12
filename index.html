@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Yasha</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #000000, #001f33);
+        color: white;
+        text-align: center;
+    }
+    header {
+        padding: 10px;
+    }
+    header img {
+        width: 150px;
+        height: auto;
+        border-radius: 50%;
+        border: 3px solid #00bfff;
+        box-shadow: 0 0 15px #00bfff;
+    }
+    h1 {
+        margin: 10px 0;
+        font-size: 28px;
+        color: #00bfff;
+    }
+    .btn {
+        display: block;
+        margin: 10px auto;
+        padding: 12px 20px;
+        background: #00bfff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        cursor: pointer;
+        width: 80%;
+        max-width: 300px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    .btn:hover {
+        background: #008fcc;
+        transform: scale(1.05);
+    }
+    #loading {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        flex-direction: column;
+        animation: fadeOut 1s ease forwards;
+        animation-delay: 3s;
+    }
+    #loading div {
+        border: 6px solid #f3f3f3;
+        border-top: 6px solid #00bfff;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    @keyframes fadeOut {
+        to { opacity: 0; visibility: hidden; }
+    }
+    .comments {
+        margin-top: 20px;
+        padding: 10px;
+    }
+    .comments textarea {
+        width: 90%;
+        height: 80px;
+        border-radius: 8px;
+        padding: 8px;
+        border: none;
+    }
+    .comments button {
+        margin-top: 8px;
+        padding: 8px 16px;
+        background: #00bfff;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<div id="loading">
+    <div></div>
+    <p>Loading...</p>
+</div>
+
+<header>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAKACAYAAACpK7hTAAAjRklEQVR4nO3d...<LONG_BASE64_DATA>...==" alt="AI Yasha Logo">
+    <h1>AI Yasha Official</h1>
+</header>
+
+<a href="tel:+94773348439" class="btn">📞 Owner Contact</a>
+<a href="https://wa.me/94773348439" class="btn">💬 WhatsApp</a>
+<a href="https://whatsapp.com/channel/0029VbBNi7H7dmeQw71jLq15" class="btn">📺 WhatsApp Channel</a>
+<a href="https://your-pair-code-link" class="btn">🔑 Pair Code</a>
+<a href="https://your-qr-link" class="btn">📷 QR Pair</a>
+
+<h2>Deploy Platforms</h2>
+<a href="https://render.com" class="btn">🚀 Deploy on Render</a>
+<a href="https://heroku.com" class="btn">🚀 Deploy on Heroku</a>
+<a href="https://koyeb.com" class="btn">🚀 Deploy on Koyeb</a>
+<a href="https://github.com" class="btn">📂 GitHub</a>
+
+<div class="comments">
+    <h3>💬 Visitor Comments</h3>
+    <textarea id="commentBox" placeholder="Type your comment..."></textarea><br>
+    <button onclick="saveComment()">Save Comment</button>
+    <ul id="commentList"></ul>
+</div>
+
+<script>
+    window.onload = function() {
+        loadComments();
+    };
+
+    function saveComment() {
+        let comment = document.getElementById('commentBox').value;
+        if(comment.trim() === '') return;
+        let comments = JSON.parse(localStorage.getItem('comments') || '[]');
+        comments.push(comment);
+        localStorage.setItem('comments', JSON.stringify(comments));
+        document.getElementById('commentBox').value = '';
+        loadComments();
+    }
+
+    function loadComments() {
+        let comments = JSON.parse(localStorage.getItem('comments') || '[]');
+        let list = document.getElementById('commentList');
+        list.innerHTML = '';
+        comments.forEach(function(c){
+            let li = document.createElement('li');
+            li.textContent = c;
+            list.appendChild(li);
+        });
+    }
+</script>
+
+</body>
+</html>
